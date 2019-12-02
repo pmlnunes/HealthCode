@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <com.github.nikartm.button.FitButton
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        app:fb_backgroundColor="#E91E63"
+        app:fb_borderColor="#000000"
+        app:fb_borderWidth="15dp"
+        app:fb_shape="circle"
+        app:fb_text="Scan"
+        app:fb_textAllCaps="true"
+        app:fb_textColor="#FFF"
+        app:fb_textPaddingEnd="16dp"
+        app:fb_textPaddingStart="16dp" />
+
+
+
+    </RelativeLayout>
