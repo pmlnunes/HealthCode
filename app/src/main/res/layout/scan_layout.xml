@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
-    <com.github.nikartm.button.FitButton
-        android:id="@+id/button"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        app:fb_backgroundColor="#E91E63"
-        app:fb_borderColor="#000000"
-        app:fb_borderWidth="15dp"
-        app:fb_shape="circle"
-        app:fb_text="Scan"
-        app:fb_textAllCaps="true"
-        app:fb_textColor="#FFF"
-        app:fb_textPaddingEnd="16dp"
-        app:fb_textPaddingStart="16dp" />
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="true"
+        app:frameColor="@android:color/white"
+        app:frameCornersSize="50dp"
+        app:frameCornersRadius="0dp"
+        app:frameAspectRatioWidth="1"
+        app:frameAspectRatioHeight="1"
+        app:frameSize="0.75"
+        app:frameThickness="2dp"
+        app:maskColor="#77000000"/>
+
+    <com.example.kloadingspin.KLoadingSpin
+        android:id="@+id/loadingSpin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:backgroundColor="@color/grey"
+        app:primarySpinnerColor="#ffffff"
+        app:rotationSpeedInMs="1500"
+        app:text="Recolhendo informação \ndo produto..."
+        app:secondarySpinnerColor="#FF9800"
+        app:textColor="#ffffff"
+        app:textSize="50" />
 
 
 
-    </RelativeLayout>
+    </FrameLayout>

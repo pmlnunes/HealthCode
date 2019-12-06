@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/primary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,24 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginVertical="30dp">
+        android:layout_margin="15dp">
 
         <TextView
             android:id="@+id/productName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0.5"
             android:fontFamily="@font/overlock_bold_italic"
-            android:gravity="center"
             android:text="CATEGORIA TESTE"
             android:textSize="40dp" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
         <ImageView
             android:id="@+id/productImg"
+            android:layout_gravity="right"
             android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_weight="0.5"/>
+            android:layout_height="70dp"/>
 
 
 
@@ -38,183 +43,328 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_margin="10dp"
         android:background="#c0c0c0"/>
 
 
-    <GridLayout
-        android:layout_width="wrap_content"
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="2">
+        >
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            >
+            android:orientation="vertical">
 
-            <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/progressViewSugar"
-                android:layout_width="164dp"
-                android:layout_height="164dp"
-                android:layout_marginBottom="8dp"
-                app:animate="true"
-                app:animateDuration="600"
-                app:fillColor="@color/colorPrimary"
-                app:progressColor="#FFF"
-                app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
-                app:progressRoundCap="true"
-                app:progressTextColor="#FFF"
-                app:progressTextEnabled="true"
-                app:progressTextSize="40dp"
-                app:progressTextType="progress"
-                app:progressValue="10"
-                app:progressWidth="12dp"
-                app:startAngle="270"
-                app:totalValue="100"
-                app:totalWidth="20dp" />
-
-
-            <TextView
+            <GridLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/open_sans_italic"
-                android:text="Açúcares"
-                android:textSize="20dp">
+                android:layout_marginBottom="20dp"
+                android:columnCount="2"
+                android:rowCount="2">
 
-            </TextView>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            >
-
-            <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/progressViewFat"
-                android:layout_width="164dp"
-                android:layout_height="164dp"
-                android:layout_marginBottom="8dp"
-                app:animate="true"
-                app:animateDuration="600"
-                app:fillColor="@color/colorPrimary"
-                app:progressColor="#FFF"
-                app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
-                app:progressRoundCap="true"
-                app:progressTextColor="#FFF"
-                app:progressTextEnabled="true"
-                app:progressTextSize="40dp"
-                app:progressTextType="progress"
-                app:progressValue="10"
-                app:progressWidth="12dp"
-                app:startAngle="270"
-                app:totalValue="100"
-                app:totalWidth="20dp" />
+                    <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                        android:id="@+id/progressViewSugar"
+                        android:layout_width="164dp"
+                        android:layout_height="164dp"
+                        android:layout_marginBottom="8dp"
+                        app:animate="true"
+                        app:animateDuration="600"
+                        app:fillColor="@color/colorPrimary"
+                        app:progressColor="#FFF"
+                        app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+                        app:progressRoundCap="true"
+                        app:progressTextColor="#FFF"
+                        app:progressTextEnabled="true"
+                        app:progressTextSize="40dp"
+                        app:progressTextType="progress"
+                        app:progressValue="10"
+                        app:progressWidth="12dp"
+                        app:startAngle="270"
+                        app:totalValue="100"
+                        app:totalWidth="20dp" />
 
 
-            <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/open_sans_italic"
+                        android:text="Açúcares"
+                        android:textSize="20dp">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    >
+
+                    <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                        android:id="@+id/progressViewFat"
+                        android:layout_width="164dp"
+                        android:layout_height="164dp"
+                        android:layout_marginBottom="8dp"
+                        app:animate="true"
+                        app:animateDuration="600"
+                        app:fillColor="@color/colorPrimary"
+                        app:progressColor="#FFF"
+                        app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+                        app:progressRoundCap="true"
+                        app:progressTextColor="#FFF"
+                        app:progressTextEnabled="true"
+                        app:progressTextSize="40dp"
+                        app:progressTextType="progress"
+                        app:progressValue="10"
+                        app:progressWidth="12dp"
+                        app:startAngle="270"
+                        app:totalValue="100"
+                        app:totalWidth="20dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/open_sans_italic"
+                        android:text="Gordura">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    >
+
+                    <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                        android:id="@+id/progressViewSaturatedFat"
+                        android:layout_width="164dp"
+                        android:layout_height="164dp"
+                        android:layout_marginBottom="8dp"
+                        app:animate="true"
+                        app:animateDuration="600"
+                        app:fillColor="@color/colorPrimary"
+                        app:progressColor="#FFF"
+                        app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+                        app:progressRoundCap="true"
+                        app:progressTextColor="#FFF"
+                        app:progressTextEnabled="true"
+                        app:progressTextSize="40dp"
+                        app:progressTextType="progress"
+                        app:progressValue="10"
+                        app:progressWidth="12dp"
+                        app:startAngle="270"
+                        app:totalValue="100"
+                        app:totalWidth="20dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/open_sans_italic"
+                        android:text="Gordura Saturada">
+
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    >
+
+                    <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                        android:id="@+id/progressViewSalt"
+                        android:layout_width="164dp"
+                        android:layout_height="164dp"
+                        android:layout_marginBottom="8dp"
+                        app:animate="true"
+                        app:animateDuration="600"
+                        app:progressColor="#FFF"
+                        app:fillColor="#FFF"
+                        app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+                        app:progressRoundCap="true"
+                        app:progressTextColor="#FFF"
+                        app:progressTextEnabled="true"
+                        app:progressTextSize="40dp"
+                        app:progressTextType="progress"
+                        app:progressValue="10"
+                        app:progressWidth="12dp"
+                        app:startAngle="270"
+                        app:totalValue="100"
+                        app:totalWidth="20dp"
+                        />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="20dp"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/open_sans_italic"
+                        android:text="Sal">
+
+                    </TextView>
+                </LinearLayout>
+
+
+            </GridLayout>
+
+
+
+            // Glúten
+            <LinearLayout
+
+                android:id="@+id/gluten"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/gluten" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/open_sans_italic"
+                    android:text="Contém glúten. Não apto para celíacos."
+                    android:textSize="14dp">
+
+                </TextView>
+
+            </LinearLayout>
+
+            // Lactose
+            <LinearLayout
+
+                android:id="@+id/lactose"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:src="@drawable/no_lactose"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14dp"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/open_sans_italic"
+                    android:text="Contém lactose. Não recomendado para intolerantes a lactose.">
+
+                </TextView>
+
+            </LinearLayout>
+
+            // Diabetes
+            <LinearLayout
+
+                android:id="@+id/sugar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                >
+
+                <ImageView
+                    android:src="@drawable/high_sugar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14dp"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/open_sans_italic"
+                    android:text="Alto teor de açúcar. Não recomendado para diabéticos.">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+            // Botões
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:textSize="20dp"
-                android:fontFamily="@font/open_sans_italic"
-                android:text="Gordura">
+                android:orientation="horizontal">
 
-            </TextView>
-        </LinearLayout>
+                <Button
+                    android:id="@+id/favoriteButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/favorite">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            >
+                </Button>
 
-            <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/progressViewSaturatedFat"
-                android:layout_width="164dp"
-                android:layout_height="164dp"
-                android:layout_marginBottom="8dp"
-                app:animate="true"
-                app:animateDuration="600"
-                app:fillColor="@color/colorPrimary"
-                app:progressColor="#FFF"
-                app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
-                app:progressRoundCap="true"
-                app:progressTextColor="#FFF"
-                app:progressTextEnabled="true"
-                app:progressTextSize="40dp"
-                app:progressTextType="progress"
-                app:progressValue="10"
-                app:progressWidth="12dp"
-                app:startAngle="270"
-                app:totalValue="100"
-                app:totalWidth="20dp" />
+                <Button
+                    android:id="@+id/shareProductButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/share">
 
+                </Button>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:fontFamily="@font/open_sans_italic"
-                android:text="Gordura Saturada">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            >
-
-            <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/progressViewSalt"
-                android:layout_width="164dp"
-                android:layout_height="164dp"
-                android:layout_marginBottom="8dp"
-                app:animate="true"
-                app:animateDuration="600"
-                app:progressColor="#FFF"
-                app:fillColor="#FFF"
-                app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
-                app:progressRoundCap="true"
-                app:progressTextColor="#FFF"
-                app:progressTextEnabled="true"
-                app:progressTextSize="40dp"
-                app:progressTextType="progress"
-                app:progressValue="10"
-                app:progressWidth="12dp"
-                app:startAngle="270"
-                app:totalValue="100"
-                app:totalWidth="20dp"
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:elevation="10dp"
-                android:fontFamily="@font/open_sans_italic"
-                android:text="Sal">
-
-            </TextView>
+            </LinearLayout>
         </LinearLayout>
 
 
-    </GridLayout>
 
 
+
+    </ScrollView>
 
 
 

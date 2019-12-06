@@ -74,7 +74,13 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
             true
         }
-
+        R.id.history -> {
+            val manager = supportFragmentManager
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.fragment_container, HistoryFragment())
+            transaction.commit()
+            true
+        }
         else -> {
             // If we got here, the user's action was not recognized.
             // Invoke the superclass to handle it.

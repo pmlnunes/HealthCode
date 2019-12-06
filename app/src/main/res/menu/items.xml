@@ -8,6 +8,12 @@
         android:title="Scan Barcode"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/share"
+        android:title="History"
+        app:showAsAction="ifRoom"/>
+
 
 
 </menu>

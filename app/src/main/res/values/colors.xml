@@ -17,5 +17,12 @@
 
     <color name="black">#000</color>
     <color name="grey">#a5a9b0</color>
+    <color name="grey_overlay">#80a5a9b0</color>
+
+    <color name="primary">#adffe5</color>
+    <color name="secondary">#26ffba</color>
+
+
+
 
 </resources>

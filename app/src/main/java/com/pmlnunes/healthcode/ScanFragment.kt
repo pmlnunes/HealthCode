@@ -16,11 +16,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.budiyev.android.codescanner.CodeScanner
+import com.budiyev.android.codescanner.CodeScannerView
+import com.budiyev.android.codescanner.DecodeCallback
+import com.example.kloadingspin.KLoadingSpin
 import com.github.nikartm.button.FitButton
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.BarcodeDetector
@@ -43,9 +48,9 @@ val REQUEST_IMAGE_CAPTURE = 1
 class ScanFragment : Fragment() {
 
 
-    private var mButton: FitButton? = null
+    private lateinit var codeScanner: CodeScanner
+    private lateinit var mLoadingSpin: KLoadingSpin
     private var mCurrentPhotoPath: String? = null
-    private var mBarcode: String? = null
     private var mImageBitmap: Bitmap? = null
 
 
@@ -66,65 +71,33 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        mButton = view?.findViewById(R.id.button) as FitButton
-        mButton!!.setOnClickListener(){
-            takePicture()
-        }
 
+        val scannerView = view.findViewById<CodeScannerView>(R.id.scanner_view)
+        val activity = requireActivity()
+        mLoadingSpin = view.findViewById(R.id.loadingSpin)
+        codeScanner = CodeScanner(activity, scannerView)
+        codeScanner.decodeCallback = DecodeCallback {
+            activity.runOnUiThread {
+                mLoadingSpin.startAnimation()
+                mLoadingSpin.setIsVisible(true)
+                callFoodApi(it.text)
+
+                //Toast.makeText(activity, it.text, Toast.LENGTH_LONG).show()
+            }
+        }
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
 
 
-private fun takePicture(){
-    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-    if (cameraIntent.resolveActivity(activity!!.packageManager) != null) {
-        // Create the File where the photo should go
-        var photoFile: File? = null
-        try {
-            photoFile = createImageFile()
-        } catch (ex: IOException) {
-            // Error occurred while creating the File
-            Log.i(
-                "ActTag", "IOException")
-        }
 
-        // Continue only if the File was successfully created
-        if (photoFile != null) {
-            cameraIntent.putExtra(
-                MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(
-                    this.context!!,
-                    "com.pmlnunes.healthcode.provider", //(use your app signature + ".provider" )
-                    photoFile))
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
-        }
-    }
-}
+    private fun callFoodApi(barcode : String) {
+        val url = "https://world.openfoodfacts.org/api/v0/product/" + barcode + ".json"
 
-
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
-        val storageDir = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES
-        )
-        val image = File.createTempFile(
-            imageFileName, // prefix
-            ".jpg", // suffix
-            storageDir      // directory
-        )
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.absolutePath
-        return image
-    }
-
-    private fun callFoodApi() {
-        val url = "https://world.openfoodfacts.org/api/v0/product/" + mBarcode + ".json"
-
-        if (mBarcode!= null){
+        if (barcode!= null){
 
             val queue = Volley.newRequestQueue(activity)
             val args = Bundle()
@@ -136,6 +109,7 @@ private fun takePicture(){
                 Response.Listener { response ->
 //                    mFoodInfo!!.text = response.toString(2)
 //                    gatherInfoFromResponse(response)
+
 
                     if(response.getString("status_verbose").equals("product not found")){
                         args.putBoolean("notFound", true)
@@ -168,52 +142,16 @@ private fun takePicture(){
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            try {
-                var options = BitmapFactory.Options ();
-                options.inSampleSize = 4;
-                try {
-                    mImageBitmap = BitmapFactory.decodeFile(
-                        mCurrentPhotoPath,
-                        options
-                    )
-                }catch (e: Exception){
-                    throw e
-                }
 
-
-
-
-
-                val barcodeDetector = BarcodeDetector.Builder(context!!)
-                    .build();
-
-                val frame = Frame.Builder().setBitmap(mImageBitmap).build()
-                val barcodes = barcodeDetector.detect(frame)
-
-                if(barcodes.size()==0){
-                    val retryFragment = RetryFragment()
-                    val manager = activity!!.supportFragmentManager
-                    val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, retryFragment)
-                    transaction.commit()
-                }else{
-                    val thisCode = barcodes.valueAt(0)
-                    mBarcode = thisCode.rawValue
-
-                    callFoodApi();
-                }
-
-
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
-        }
+    override fun onResume() {
+        super.onResume()
+        codeScanner.startPreview()
     }
 
-
+    override fun onPause() {
+        codeScanner.releaseResources()
+        super.onPause()
+    }
 
 
 

@@ -9,7 +9,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.pmlnunes.healthcode"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "0.1"
@@ -49,6 +49,18 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //codescanner
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+
+    //loading
+    implementation 'com.github.Nikoloutsos:KLoadingSpin:1.1.0'
+
+    //JSON parser
+    implementation 'com.beust:klaxon:5.0.1'
+
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     //FIREBASE ML
 //    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
