@@ -1,4 +1,4 @@
-package com.pmlnunes.healthcode
+package com.pmlnunes.healthcode.views.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import org.json.JSONObject
+import com.pmlnunes.healthcode.FragmentListener
+import com.pmlnunes.healthcode.R
+import com.pmlnunes.healthcode.views.activities.MainActivity
 
-class RetryFragment : Fragment() {
+class RetryFragment(val callback: FragmentListener) : Fragment() {
 
 
     private var mButton: Button? = null
@@ -35,7 +37,6 @@ class RetryFragment : Fragment() {
         mButton = view?.findViewById(R.id.retryButton) as Button
         mText = view?.findViewById(R.id.retryReason)
         mButton!!.setOnClickListener(){
-            retryScan()
         }
 
         val args = arguments
@@ -48,15 +49,6 @@ class RetryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-
-
-    private fun retryScan(){
-        val scanFragment = ScanFragment()
-        val manager = activity!!.supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.fragment_container, scanFragment)
-        transaction.commit()
-    }
 
 
 
